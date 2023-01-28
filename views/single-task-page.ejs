@@ -1,0 +1,168 @@
+<%- include("header") -%>
+	<div class="clearfix"></div>
+	<!-- Header Container / End -->
+
+	<!-- Titlebar
+================================================== -->
+	<div class="single-page-header" data-background-image="image/logo.png">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="single-page-header-inner">
+						<div class="left-side">
+							<div class="header-image"><a href="single-company-profile.html"><img
+										src="images\scrunchie-img.jpg"></a></div>
+							<div class="header-details">
+								<h3>
+									<%= task.task_name%>
+								</h3>
+
+								<ul>
+									<li>
+										<div class="star-rating" data-rating="5.0"></div>
+									</li>
+
+									<li>
+										<div class="verified-badge-with-title">Verified</div>
+									</li>
+								</ul>
+							</div>
+						</div>
+						<div class="right-side">
+							<div class="salary-box">
+								<div class="salary-type">Project Budget</div>
+								<div class="salary-amount">&#8377;<%= task.min_budget%> - &#8377;<%= task.max_budget%>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<!-- Page Content
+================================================== -->
+	<div class="container">
+		<div class="row">
+
+			<!-- Content -->
+			<div class="col-xl-8 col-lg-8 content-right-offset">
+
+				<!-- Description -->
+				<div class="single-page-section">
+					<h3 class="margin-bottom-25">Work Description</h3>
+					<p>
+						<%= task.description%>
+					</p>
+					<!-- <p>STEP 1 - FOLD OVER ONE END
+					If your fabric frays, then press over one of the short ends by ½ inch (12mm) on the WRONG side. For Lycra scrunchies or fabric that doesn't fray such as knits, you can skip to the next step.</p>
+				<p> STEP 2 - STITCH ALONG THE LENGTH
+					With RIGHT sides together, fold the fabric lengthwise matching the raw edges.</p>
+				<p>
+					STEP 3 - TURN THE TUBE THE RIGHT WAY OUT
+Now turn your tube RIGHT side out. The easiest way to do this is to attach the safety pin to one end and thread it back through the middle. You need a small to medium-sized safety pin to do this. a large pin won't be able to turn back on itself.
+				</p>
+				<p>STEP 4 - PRESS THE DIY SCRUNCHIE
+					If you are using a cotton fabric then give it a good press. For Lycra fabrics, just try and flatten it out a little with your fingers. The seam should be on one side of the tube so it is not easily visible.</p>
+			
+				<p>
+					STEP 5 - THREAD THE ELASTIC
+Now attach the safety pin to the elastic and thread it through the tube. Make sure you pin the first end so it doesn't pull all the way through by mistake. Your fabric will gather on top of the elastic.
+				</p>
+			
+				<p>STEP 6 - STITCH THE ELASTIC
+					Overlap the ends of the elastic by ½ inch (12mm) and stitch them together. If you are in a hurry you could just tie the ends in a knot instead of stitching. Pull it tight so it won't come undone.</p>
+				
+				<p>STEP 7 - FINAL STITCH OF THE ENDS
+					Pull the elastic around so the join is hidden. Then feed the raw edge of the tube into the pressed edge.</p> -->
+					<img src="<%= task.attachment%>" height="auto" width="auto">
+				</div>
+
+
+				<!-- Skills -->
+				<div class="single-page-section">
+					<h3>Skills Required</h3>
+					<div class="task-tags">
+						<span>Sewing</span>
+
+					</div>
+				</div>
+				<div class="clearfix"></div>
+
+				<!-- Freelancers Bidding -->
+
+			</div>
+
+
+			<!-- Sidebar -->
+			<div class="col-xl-4 col-lg-4">
+				<div class="sidebar-container">
+
+					<div class="countdown green margin-bottom-35">6 days, 23 hours left</div>
+
+					<div class="sidebar-widget">
+						<div class="bidding-widget">
+							<form action="/bid-task/" method="post", id="bid-task">
+								<input type="hidden" name="userid" value="<%= user._id%>">
+								<input type="hidden" name="taskid" value="<%= task._id%>">
+								<div class="bidding-headline">
+									<h3>Bid on this job!</h3>
+								</div>
+								<div class="bidding-inner">
+
+									<!-- Headline -->
+									<span class="bidding-detail">Set your <strong>rate</strong></span>
+
+									<!-- Price Slider -->
+									<div class="bidding-value">&#8377;<span id="biddingVal"></span></div>
+									<input name="bid_value" class="bidding-slider" type="text" value="" data-slider-handle="custom"
+										data-slider-currency="&#8377;" data-slider-min="<%= task.min_budget%>" data-slider-max="<%= task.max_budget%>"
+										data-slider-value="auto" data-slider-step="50" data-slider-tooltip="hide" />
+
+									<!-- Headline -->
+									<span class="bidding-detail margin-top-30">Set your <strong>delivery
+											time</strong></span>
+
+									<!-- Fields -->
+									<div class="bidding-fields">
+										<div class="bidding-field">
+											<!-- Quantity Buttons -->
+											<div class="qtyButtons">
+												<div class="qtyDec"></div>
+												<input name="delivery_number" type="text" name="qtyInput" value="1">
+												<div class="qtyInc"></div>
+											</div>
+										</div>
+										<div class="bidding-field">
+											<select name="delivery_type" class="selectpicker default">
+												<option selected>Days</option>
+												<option>Hours</option>
+											</select>
+										</div>
+									</div>
+
+									<!-- Button -->
+									<button id="snackbar-place-bid"
+										class="button ripple-effect move-on-hover full-width margin-top-30"><span>Place
+											a Bid</span></button>
+								</div>
+							</form>
+						</div>
+					</div>
+
+					<!-- Sidebar Widget -->
+
+
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+
+
+
+
+	<%- include("footer") -%>

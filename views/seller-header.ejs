@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Basic Page Needs
+================================================== -->
+    <title>Dilingnto</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!-- CSS
+================================================== -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/colors/blue.css">
+
+</head>
+
+<body class="gray">
+
+    <!-- Wrapper -->
+    <div id="wrapper">
+
+        <!-- Header Container
+================================================== -->
+        <header id="header-container" class="fullwidth dashboard-header not-sticky">
+
+            <div id="header">
+                <div class="container">
+
+                    <!-- Left Side Content -->
+                    <div class="left-side">
+
+                        <!-- Logo -->
+                        <div id="logo">
+                            <a href="/dashboard"><img src="image/logo.png" alt="Logo"></a>
+                        </div>
+
+                        <!-- Main Navigation -->
+                        <nav id="navigation">
+                            <ul id="responsive">
+
+                                <li><a href="/dashboard" <% if(current=='dashboard'){ %> class="current" <% } %>>Dashboard</a>
+                                </li>
+                                <li><a href="/freelancers-list" <% if(current=='freelancer'){ %> class="current" <% } %>>Find a Helper</a>
+                                </li>
+                                <li>
+                                    <a href="" <% if(current=='tasks'){ %> class="current" <% } %>>Tasks</a>
+                                    <ul class="dropdown-nav">
+										<li><a href="/seller-manage-tasks">Manage Tasks</a></li>
+										<li><a href="/seller-active-bids">My Active Bids</a></li>
+										<li><a href="/seller-post-task">Post a Task</a></li>
+									</ul>
+                                </li>
+                            </ul>
+                        </nav>
+                        <div class="clearfix"></div>
+                        <!-- Main Navigation / End -->
+
+                    </div>
+                    <!-- Left Side Content / End -->
+
+
+                    <!-- Right Side Content / End -->
+                    <div class="right-side">
+                        <!-- User Menu -->
+                        <div class="header-widget">
+
+                            <!-- Messages -->
+                            <div class="header-notifications user-menu">
+                                <div class="header-notifications-trigger">
+                                    <a href="#">
+                                        <div class="user-avatar status-online"><i class="custom-user-avtar icon-feather-user"></i></div>
+                                    </a>
+                                </div>
+
+                                <!-- Dropdown -->
+                                <div class="header-notifications-dropdown">
+
+                                    <!-- User Status -->
+                                    <div class="user-status">
+
+                                        <!-- User Name / Avatar -->
+                                        <div class="user-details">
+                                            <div class="user-avatar custom-size status-online"><i class="custom-user-avtar icon-feather-user"></i></div>
+                                            <div class="user-name">
+                                                <%=user.username%><span><%=user.type%></span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <ul class="user-menu-small-nav">
+                                        <li><a href="/dashboard-settings"><i class="icon-material-outline-settings"></i>
+                                                Settings</a></li>
+                                        <li><a href="/logout"><i
+                                                    class="icon-material-outline-power-settings-new"></i> Logout</a>
+                                        </li>
+                                    </ul>
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <!-- User Menu / End -->
+
+                        <!-- Mobile Navigation Button -->
+                        <span class="mmenu-trigger">
+                            <button class="hamburger hamburger--collapse" type="button">
+                                <span class="hamburger-box">
+                                    <span class="hamburger-inner"></span>
+                                </span>
+                            </button>
+                        </span>
+
+                    </div>
+                    <!-- Right Side Content / End -->
+
+                </div>
+            </div>
+        </header>

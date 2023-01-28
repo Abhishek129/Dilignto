@@ -1,0 +1,148 @@
+<%- include("seller-header") -%>
+<div class="clearfix"></div>
+<!-- Header Container / End -->
+
+
+<!-- Dashboard Container -->
+<div class="dashboard-container">
+
+	<!-- Dashboard Sidebar
+	================================================== -->
+	<div class="dashboard-sidebar">
+		<div class="dashboard-sidebar-inner" data-simplebar>
+			<%- include("seller-sidebar") -%>
+		</div>
+	</div>
+	<!-- Dashboard Sidebar / End -->
+
+
+	<!-- Dashboard Content
+	================================================== -->
+	<div class="dashboard-content-container" data-simplebar>
+		<div class="dashboard-content-inner" >
+			
+			<!-- Dashboard Headline -->
+			<div class="dashboard-headline">
+				<h3>Post a Task</h3>
+
+				<!-- Breadcrumbs -->
+				<nav id="breadcrumbs" class="dark">
+					<ul>
+						<li><a href="/dashboard">Dashboard</a></li>
+						<li><a href="#">Task</a></li>
+						<li>Post a Task</li>
+					</ul>
+				</nav>
+			</div>
+	
+			<!-- Row -->
+			<div class="row">
+				<form method="post" id="skill" action="/taskskillsadd"></form>
+				
+				<!-- Dashboard Box -->
+				<div class="col-xl-12">
+					<div class="dashboard-box margin-top-0">
+
+						<!-- Headline -->
+						<div class="headline">
+							<h3><i class="icon-feather-folder-plus"></i> Task Submission Form</h3>
+						</div>
+							<div class="content with-padding padding-bottom-10">
+								<form method="post" id="post-task-form" enctype="multipart/form-data" action="/post-task">				
+									<div class="row">
+										<div class="col-xl-4">
+											<div class="submit-field">
+												<h5>Task Name</h5>
+												<input type="text" form="post-task-form" name="task_name" id="task_name" class="with-border" placeholder="e.g. build me a website"/>
+											</div>
+										</div>
+
+										<div class="col-xl-4">
+											<div class="submit-field">
+												<h5>Category</h5>
+												<select class="selectpicker with-border" form="post-task-form" name="category" data-size="7" title="Select Category">
+													<option value="Sewing">Sewing</option>
+													<option value="Stone-Art">Stone-Art</option>
+													<option value="Cooking">Cooking</option>
+													<option value="Candle-making">Candle-making</option>
+													<option value="Beading">Beading</option>
+													<option value="Kniting">Kniting</option>
+													<option value="Lace-work">Lace-work</option>
+													<option value="Art-Craft">Art-Craft</option>
+													<option value="Mirror-Art">Mirror-Art</option>
+													
+												</select>
+												<br>
+											</div>
+										</div>
+
+										<div class="col-xl-4">
+											<div class="submit-field">
+												<h5>Location  <i class="help-icon" data-tippy-placement="right" title="Leave blank if it's an online job"></i></h5>
+												<div class="input-with-icon">
+													<div id="autocomplete-container">
+														<input id="autocomplete-input" form="post-task-form" name="location" id="location" class="with-border" type="text" placeholder="Anywhere">
+													</div>
+													<i class="icon-material-outline-location-on"></i>
+												</div>
+											</div>
+										</div>
+
+										<div class="col-xl-6">
+											<div class="submit-field">
+												<h5>What is your estimated budget?</h5>
+												<div class="row">
+													<div class="col-xl-6">
+														<div class="input-with-icon">
+															<input class="with-border" form="post-task-form" name="min_budget" id="min_budget" type="number" placeholder="Minimum">
+															<i class="currency">INR</i></input>
+															<label class="error" for="min_budget"></label>
+														</div>
+													</div>
+													<div class="col-xl-6">
+														<div class="input-with-icon">
+															<input class="with-border" form="post-task-form" name="max_budget" id="max_budget" type="number" placeholder="Maximum">
+															<i class="currency">INR</i>
+														</div>
+													</div>
+												</div>
+												<div class="feedback-yes-no margin-top-0">
+													<div class="radio">
+														<input id="radio-1" form="post-task-form"  name="project_type" value="fixed" type="radio" checked>
+														<label for="radio-1"><span class="radio-label"></span> Fixed Price Project</label>
+													</div>
+
+													<div class="radio">
+														<input id="radio-2" form="post-task-form" name="project_type" value="hourly" type="radio">
+														<label for="radio-2"><span class="radio-label"></span> Hourly Project</label>
+													</div>
+												</div>
+											</div>
+										</div>
+
+										<div class="col-xl-12">
+											<div class="submit-field">
+												<h5>Describe Your Work</h5>
+												<textarea cols="30" form="post-task-form" name="description" id="description" rows="5" class="with-border"></textarea>
+												<div class="uploadButton margin-top-30">
+													<input class="uploadButton-input" form="post-task-form" name="file_upload" type="file" accept="image/*, application/pdf" id="file_upload" multiple/>
+													<label class="uploadButton-button ripple-effect" for="file_upload">Upload Photos/videos</label>
+													<span class="uploadButton-file-name">Images or documents that might be helpful in describing your task</span>
+												</div>
+											</div>
+										</div>
+									</div>
+								</form>
+							</div>
+					</div>
+				</div>
+
+				<div class="col-xl-12">
+					<button class="button ripple-effect big margin-top-30" form="post-task-form" type="submit"><i class="icon-feather-plus"></i> Post a Task
+					</button>
+				</div>
+
+			</div>
+			<!-- Row / End -->
+
+			<%- include("seller-footer") -%>
