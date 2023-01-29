@@ -179,13 +179,16 @@
 								<strong>&#8377;<%= task.min_budget%> - &#8377;<%= task.max_budget%></strong>
 								<span>Fixed Price</span>
 							</div>
-							<% task_bid.forEach(function(task_bid){ %>
-							<% if(task_bid.taskid==task._id){ %>
-								<span class="button cus-btn-color disabled  ripple-effect">Approval sended</span>	
-								<%} else { %>
+							<% if(task_bid==''){ %>
+								<a href="/single-tasks-list/<%= task._id%>"><span class="button button-sliding-icon ripple-effect">Bid Now <i class="icon-material-outline-arrow-right-alt"></i></span></a>
+							<%} else { var result=task_bid.filter(data=> { return data.taskid == task._id}) %>
+								<% if(result!=''){ %>
+									<span class="button cus-btn-color disabled  ripple-effect">Approval sended</span>	
+									<%}
+								else { %>
 									<a href="/single-tasks-list/<%= task._id%>"><span class="button button-sliding-icon ripple-effect">Bid Now <i class="icon-material-outline-arrow-right-alt"></i></span></a>
+									<% } %>
 								<% } %>
-							<% }); %>
 						</div>
 					</div>
 					

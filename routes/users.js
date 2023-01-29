@@ -8,6 +8,7 @@ const session = require('express-session')
 const multer = require("multer");
 const path = require('path');
 const fs = require("fs");
+const  ObjectID = require('mongodb').ObjectId;
 
 const app = express();
 app.use(session({
@@ -78,8 +79,10 @@ router.get('/dashboard-settings', async (req, res) => {
 router.get('/tasks-list', async (req, res) => {
     if (req.session.user) {
         current = 'task';
-        var task = await Task.find({ userid: req.session.user._id });
-        var task_bid = await Task_Bid.find({ userid: req.session.user._id });
+        var task = await Task.find({ status: {$nin : ["complelted"]} });
+        var task_bid = await Task_Bid.find({ userid: req.session.user._id});
+        console.log(task_bid)
+        console.log(req.session.user)
         if(task){
             res.render("tasks-list", { current: current, user: req.session.user, task: task ,task_bid:task_bid})
         }
@@ -110,6 +113,61 @@ router.get('/single-tasks-details', async (req, res) => {
         res.redirect("/");
     }
 })
+//hchange
+router.get('/freelancer-profile', async (req, res) => {
+    if (req.session.user) {
+        current = 'freelancer-list';
+        res.render("freelancer-profile", { current: current, user: req.session.user });
+    }
+    else {
+        res.redirect("/");
+    }
+})
+
+router.get('/helper-my-bids', async (req, res) => {
+    if (req.session.user) {
+        current = 'tasks';
+        active='helper-my-bids';
+        res.render("helper-my-bids", { current: current,active:active, user: req.session.user });
+    }
+    else {
+        res.redirect("/");
+    }
+})
+
+router.get('/helper-active-bids', async (req, res) => {
+    if (req.session.user) {
+        current = 'tasks';
+        active='helper-active-bids';
+        res.render("helper-active-bids", { current: current,active:active, user: req.session.user });
+    }
+    else {
+        res.redirect("/");
+    }
+})
+
+router.get('/helper-old-task', async (req, res) => {
+    if (req.session.user) {
+        current = 'tasks';
+        active='helper-old-task';
+        res.render("helper-old-task", { current: current,active:active, user: req.session.user });
+    }
+    else {
+        res.redirect("/");
+    }
+})
+
+router.get('/invoice', async (req, res) => {
+    if (req.session.user) {
+        current = 'tasks';
+        active='helper-active-bids';
+        res.render("invoice", { current: current,active:active, user: req.session.user });
+    }
+    else {
+        res.redirect("/");
+    }
+})
+//hchnge-end
 
 router.get('/freelancers-list', async (req, res) => {
     if (req.session.user) {
@@ -134,22 +192,52 @@ router.get('/seller-manage-tasks', async (req, res) => {
         res.redirect("/");
     }
 })
-router.get('/seller-manage-bidders', async (req, res) => {
+router.get('/seller-manage-bidders/:id', async (req, res) => {
     if (req.session.user) {
+        taskid = req.params['id']
         current = 'tasks';
         active = 'managetask';
-        res.render("manage-bidders", { current: current, active: active, user: req.session.user });
+        var active_bid_list = await Task_Bid.find({taskid: taskid });
+        helper_list=[]
+        for(var i=0;i<active_bid_list.length;i++){
+            helper_list.push(ObjectID(active_bid_list[i].helperid))
+        }
+        req.session.user_new_list = await User.find({ "_id": { "$in": helper_list}})
+        req.session.active_bid_list = active_bid_list;
+
+        console.log(req.session.user_new_list)
+        console.log(req.session.active_bid_list)
+        res.redirect("/bidders")
     }
     else {
         res.redirect("/");
     }
 })
+router.get('/bidders', async (req, res) => {
+    
+    if (req.session.user) {
+        current = 'task';   
+        active = 'managetask';
+        res.render("manage-bidders", { active_bid:req.session.active_bid_list,current: current,active:active ,user: req.session.user,user_new_list:req.session.user_new_list });
+        // res.render("manage-bidders", { current: current, active: active, user: req.session.user ,user_new_list:req.session.user_new_list });
+    }
+    else {
+        res.redirect("/");
+    }
+})
+
 router.get('/seller-active-bids', async (req, res) => {
     if (req.session.user) {
         current = 'tasks';
         active = 'activebid';
-        var active_bid_list = await Task_Bid.find({ userid: req.session.user._id });
-        var task = await Task.find({ userid: req.session.user._id });
+        var active_bid_list = await Task_Bid.find({ userid: req.session.user._id,status:'approved' });
+        task_list=[]
+        for(var i=0;i<active_bid_list.length;i++){
+            task_list.push(ObjectID(active_bid_list[i].taskid))
+        }
+        var task = await Task.find({ '_id': { "$in" : task_list}});
+        // console.log(task)
+        // console.log(active_bid_list)
         if(active_bid_list){
             res.render("seller-active-bids", { current: current, active: active, user: req.session.user,active_bid_list: active_bid_list,task: task });
         }
@@ -200,6 +288,49 @@ router.get('/skillsremove/:skill', async (req, res) => {
             res.redirect("/dashboard-settings");
         })
 
+})
+router.get('/status_update/:taskid/:userid/:status', async (req, res) => {
+    var taskid = req.params['taskid']
+    var userid = req.params['userid']
+    var status = req.params['status']
+    
+    if (status=='approved'){
+    Task_Bid.updateOne(
+        { userid: userid,taskid: taskid},
+        { 
+            $set: {status:status} 
+        },
+        function (err, result) {
+            res.redirect("/seller-active-bids");
+            console.log(result)
+        })
+    }
+    else if(status=='decline'){
+        Task_Bid.updateOne(
+            { userid: userid,taskid: taskid},
+            { 
+                $set: {status:status} 
+            },
+            function (err, result) {
+                res.redirect("/seller-active-bids");
+                console.log(result)
+            })
+    }
+})
+
+router.get('/delete_task/:id', async (req, res) => {
+    var id = req.params['id']
+    Task.remove({_id:ObjectID(id)},
+    function(err,result){
+        if(!err){
+            Task_Bid.remove({taskid:ObjectID(id)},
+            function(err,result){
+                if(!err){
+                res.redirect("/seller-manage-tasks");
+                }
+            })
+        }
+    })
 })
 router.post('/userProfile', async (req, res) => {
     if (req.session.user) {
@@ -264,7 +395,14 @@ router.post('/authorize', async (req, res) => {
 router.post('/post-task',upload.single('file_upload'), async (req, res) => {
     if (req.session.user) {
         // current = 'dashboard';
-        // active = 'dashboard';
+        // active = 'dashboard'; 
+        // attach = req.file.path
+        // if(attach==''){
+        //     attach =''
+        // }
+        // else{
+        //     attach = req.file.path.slice(7)
+        // }
 
         const task = new Task({
             userid: req.session.user._id,
@@ -274,7 +412,7 @@ router.post('/post-task',upload.single('file_upload'), async (req, res) => {
             min_budget: req.body.min_budget,
             max_budget: req.body.max_budget,
             type_of_project: req.body.project_type,
-            attachment:req.file.path,
+            attachment:req.file.path.slice(7),
             description: req.body.description
         })
         await task.save();
@@ -315,11 +453,13 @@ router.post('/bid-task/', async (req, res) => {
     if (req.session.user) {
         // current = 'dashboard';
         // active = 'dashboard';
-
+        var task = await Task.find({ _id: req.body.taskid});
         const bid_task = new Task_Bid({
-            userid: req.body.userid,
+            sellerid: task[0].userid,
+            helperid: req.body.helperid,
             taskid: req.body.taskid,
-            bid_rate: req.body.bid_value,
+            rate: req.body.bid_value,
+            status:'bidding',
             delivery_time : req.body.delivery_number +' '+req.body.delivery_type
         })
         await bid_task.save();

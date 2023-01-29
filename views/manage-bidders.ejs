@@ -32,7 +32,7 @@
 					<ul>
 						<li><a href="/dashboard">Dashboard</a></li>
 						<li><a href="#">Task</a></li>
-						<li><a href="/seller-manage-tasks">Manage Task</a></li>
+						<li><a href="/seller-manage-tasks/">Manage Task</a></li>
 						<li><a href="/seller-manage-bidders">Manage Bidders</a></li>
 					</ul>
 				</nav>
@@ -47,7 +47,7 @@
 
 						<!-- Headline -->
 						<div class="headline">
-							<h3><i class="icon-material-outline-supervisor-account"></i> 3 Bidders</h3>
+							<h3><i class="icon-material-outline-supervisor-account"></i> <%=active_bid.length%> Bidders</h3>
 							<div class="sort-by">
 								<select class="selectpicker hide-tick">
 									<option>Highest First</option>
@@ -58,6 +58,10 @@
 
 						<div class="content">
 							<ul class="dashboard-box-list">
+								<% active_bid.forEach(function(active_bid){ %>
+								<% user_new_list.forEach(function(user_new_list){ %>
+									
+										<% if(user_new_list._id==active_bid.helperid){ %>
 								<li>
 									<!-- Overview -->
 									<div class="freelancer-overview manage-candidates">
@@ -71,7 +75,7 @@
 
 											<!-- Name -->
 											<div class="freelancer-name">
-												<h4><a href="#">Hemaxi Prajapati</a></h4>
+												<h4><a href="#"><%= user_new_list.fname%>  <%= user_new_list.lname%></a></h4>
 
 												
 												<!-- Rating -->
@@ -81,94 +85,22 @@
 
 												<!-- Bid Details -->
 												<ul class="dashboard-task-info bid-info">
-													<li><strong>&#8377;3,200</strong><span>Fixed Price</span></li>
-													<li><strong>14 Days</strong><span>Delivery Time</span></li>
+													<li><strong>&#8377;<%= active_bid.rate%></strong><span>Fixed Price</span></li>
+													<li><strong><%= active_bid.delivery_time%></strong><span>Delivery Time</span></li>
 												</ul>
 
 												<!-- Buttons -->
 												<div class="buttons-to-right always-visible margin-top-25 margin-bottom-0">
-													<a href="#small-dialog-1"  class="popup-with-zoom-anim button ripple-effect"><i class="icon-material-outline-check"></i> Accept Offer</a>
-													<a href="#small-dialog-2" class="popup-with-zoom-anim button dark ripple-effect"><i class="icon-feather-mail"></i> Send Message</a>
-													<a href="#" class="button gray ripple-effect ico" title="Remove Bid" data-tippy-placement="top"><i class="icon-feather-trash-2"></i></a>
+													<a href="status_update/<%= active_bid.taskid%>/<%= user_new_list._id%>/approved"  class="button ripple-effect"><i class="icon-material-outline-check"></i> Accept Offer</a>
+													<a href="status_update/<%= active_bid.taskid%>/<%= user_new_list._id%>/decline" class="button dark ripple-effect"><i class="icon-feather-mail"></i> Decline offer</a>
 												</div>
 											</div>
 										</div>
 									</div>
 								</li>
-								<li>
-									<!-- Overview -->
-									<div class="freelancer-overview manage-candidates">
-										<div class="freelancer-overview-inner">
-
-											<!-- Avatar -->
-											<div class="freelancer-avatar">
-												<a href="#"><i class="custom-user-avtar freelancer-image icon-feather-user"></i></a>
-											</div>
-
-											<!-- Name -->
-											<div class="freelancer-name">
-												<h4><a href="#">Shrikunj Maru </a></h4>
-
-												<span class="freelancer-detail-item"><i class="icon-feather-phone"></i> (+91) 123-456-789</span>
-
-
-												<!-- Rating -->
-												<br>
-												<span class="company-not-rated">Minimum of 3 votes required</span>
-
-												<!-- Bid Details -->
-												<ul class="dashboard-task-info bid-info">
-													<li><strong>&#8377;3,000</strong><span>Fixed Price</span></li>
-													<li><strong>14 Days</strong><span>Delivery Time</span></li>
-												</ul>
-
-												<!-- Buttons -->
-												<div class="buttons-to-right always-visible margin-top-25 margin-bottom-0">
-													<a href="#small-dialog-1"  class="popup-with-zoom-anim button ripple-effect"><i class="icon-material-outline-check"></i> Accept Offer</a>
-													<a href="#small-dialog-2" class="popup-with-zoom-anim button dark ripple-effect"><i class="icon-feather-mail"></i> Send Message</a>
-													<a href="#" class="button gray ripple-effect ico" title="Remove Bid" data-tippy-placement="top"><i class="icon-feather-trash-2"></i></a>
-												</div>
-											</div>
-										</div>
-									</div>
-								</li>
-								<li>
-									<!-- Overview -->
-									<div class="freelancer-overview manage-candidates">
-										<div class="freelancer-overview-inner">
-
-											<!-- Avatar -->
-											<div class="freelancer-avatar">
-												<div class="verified-badge"></div>
-												<a href="#"><i class="custom-user-avtar freelancer-image icon-feather-user"></i></a>
-											</div>
-
-											<!-- Name -->
-											<div class="freelancer-name">
-												<h4><a href="#">Krutik Raje </a></h4>
-												<span class="freelancer-detail-item"><i class="icon-feather-phone"></i> (+91) 123-456-789</span>
-
-												<!-- Rating -->
-												<div class="freelancer-rating">
-													<div class="star-rating" data-rating="5.0"></div>
-												</div>
-
-												<!-- Bid Details -->
-												<ul class="dashboard-task-info bid-info">
-													<li><strong>&#8377;2,700</strong><span>Fixed Price</span></li>
-													<li><strong>30 Days</strong><span>Delivery Time</span></li>
-												</ul>
-
-												<!-- Buttons -->
-												<div class="buttons-to-right always-visible margin-top-25 margin-bottom-0">
-													<a href="#small-dialog-1"  class="popup-with-zoom-anim button ripple-effect"><i class="icon-material-outline-check"></i> Accept Offer</a>
-													<a href="#small-dialog-2" class="popup-with-zoom-anim button dark ripple-effect"><i class="icon-feather-mail"></i> Send Message</a>
-													<a href="#" class="button gray ripple-effect ico" title="Remove Bid" data-tippy-placement="top"><i class="icon-feather-trash-2"></i></a>
-												</div>
-											</div>
-										</div>
-									</div>
-								</li>
+								<% } %>
+								<% }); %>
+								<% }); %>
 
 							</ul>
 						</div>
@@ -180,7 +112,7 @@
 			
 <!-- Bid Acceptance Popup
 ================================================== -->
-<div id="small-dialog-1" class="zoom-anim-dialog mfp-hide dialog-with-tabs">
+<div id="small-dialog" class="zoom-anim-dialog mfp-hide dialog-with-tabs">
 
 	<!--Tabs -->
 	<div class="sign-in-form">
@@ -223,7 +155,7 @@
 
 <!-- Send Direct Message Popup
 ================================================== -->
-<div id="small-dialog-2" class="zoom-anim-dialog mfp-hide dialog-with-tabs">
+<div id="small-dialog" class="zoom-anim-dialog mfp-hide dialog-with-tabs">
 
 	<!--Tabs -->
 	<div class="sign-in-form">

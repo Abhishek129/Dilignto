@@ -1,0 +1,238 @@
+<%- include("header") -%>
+	<div class="clearfix"></div>
+	<!-- Header Container / End -->
+
+
+	<!-- Dashboard Container -->
+	<div class="dashboard-container">
+
+		<!-- Dashboard Sidebar
+	================================================== -->
+		<div class="dashboard-sidebar">
+			<div class="dashboard-sidebar-inner" data-simplebar>
+				<%- include("sidebar") -%>
+			</div>
+		</div>
+		<!-- Dashboard Sidebar / End -->
+
+
+		<!-- Dashboard Content
+	================================================== -->
+		<div class="dashboard-content-container" data-simplebar>
+			<div class="dashboard-content-inner">
+
+				<!-- Dashboard Headline -->
+				<div class="dashboard-headline">
+					<h3>Active Task</h3>
+
+					<!-- Breadcrumbs -->
+					<nav id="breadcrumbs" class="dark">
+						<ul>
+							<li><a href="/dashboard">Dashboard</a></li>
+							<li><a href="#">Task</a></li>
+							<li><a href="/helper-active-bids"> Active Task </a></li>
+						</ul>
+					</nav>
+				</div>
+
+				<!-- Row -->
+				<div class="row">
+
+					<!-- Dashboard Box -->
+					<div class="col-xl-12">
+						<div class="dashboard-box margin-top-0">
+
+							<!-- Headline -->
+							<div class="headline">
+								<h3><i class="icon-material-outline-gavel"></i> Task List</h3>
+							</div>
+
+							<div class="content">
+								<ul class="dashboard-box-list">
+
+									<li>
+										<!-- Job Listing -->
+										<div class="job-listing width-adjustment">
+
+											<!-- Job Listing Details -->
+											<div class="job-listing-details">
+
+												<!-- Details -->
+												<div class="job-listing-description">
+													<h3 class="job-listing-title"><a href="#">stone on lace patta 100
+															per pcs</a></h3>
+												</div>
+											</div>
+										</div>
+
+										<!-- Task Details -->
+										<div class="sort-by">
+											<span>Status:</span>
+											<select class="selectpicker hide-tick">
+												<option>Accepted</option>
+												<option> In Making </option>
+												<option> On hold </option>
+												<option> partially completed </option>
+												<option> Completed</option>
+												<option> In Packing </option>
+												<option> Request to pick up </option>
+											</select>
+										</div>
+
+										<div class=" margin-top-15" style="margin-left: 20px;" >
+											<a href="/helper-active-bids"
+												class="button button-sliding-icon ripple-effect"> Set Updated status <i
+													class="icon-material-outline-arrow-right-alt"></i></a>
+
+										</div>
+
+										<!-- hide this content untill status is not completed or more -->
+										<!-- <div class="job-listing width-adjustment"> 
+										</div>
+																
+				
+										<div class=" " style="    display: flex;
+										align-items: center ">
+										
+
+											<div><a href="/invoice" class="button button-sliding-icon ripple-effect"> Generate Invoice 
+												<i class="icon-material-outline-arrow-right-alt"></i></a>
+											</div>
+											<div class="" ><span style ="padding-left: 20px; "> Bill status: <strong> Unpaid</strong></span></div>	
+
+											
+										</div> -->
+										<!-- hide end -->
+
+
+									
+									</li>
+									<li>
+										<!-- Job Listing -->
+										<div class="job-listing width-adjustment">
+
+											<!-- Job Listing Details -->
+											<div class="job-listing-details">
+
+												<!-- Details -->
+												<div class="job-listing-description">
+													<h3 class="job-listing-title"><a href="#">stone on lace patta 100
+															per pcs</a></h3>
+												</div>
+											</div>
+										</div>
+
+										<!-- Task Details -->
+										<div class="sort-by">
+											<span>Status:</span>
+											<select class="selectpicker hide-tick">
+												<option>Accepted</option>
+												<option> In Making </option>
+												<option> On hold </option>
+												<option> partially completed </option>
+												<option> Completed</option>
+												<option> In Packing </option>
+												<option> Request to pick up </option>
+											</select>
+										</div>
+
+										<div class=" margin-top-15" style="margin-left: 20px;" >
+											<a href="/helper-active-bids"
+												class="button button-sliding-icon ripple-effect"> Set Updated status <i
+													class="icon-material-outline-arrow-right-alt"></i></a>
+
+										</div>
+
+										<!-- hide this content untill status is not completed or more -->
+										<div class="job-listing width-adjustment"> 
+										</div>
+																
+				
+										<div class=" " style="    display: flex;
+										align-items: center ">
+										
+
+											<div><a href="/invoice" class="button button-sliding-icon ripple-effect"> Generate Invoice 
+												<i class="icon-material-outline-arrow-right-alt"></i></a>
+											</div>
+											<div class="" ><span style ="padding-left: 20px; "> Bill status: <strong> Unpaid</strong></span></div>	
+
+											
+										</div>
+										<!-- hide end -->
+
+
+									
+									</li>
+
+								</ul>
+							</div>
+						</div>
+					</div>
+
+				</div>
+				<!-- Edit Bid Popup
+           ================================================== -->
+				<div id="small-dialog" class="zoom-anim-dialog mfp-hide dialog-with-tabs">
+
+					<!--Tabs -->
+					<div class="sign-in-form">
+
+						<ul class="popup-tabs-nav">
+							<li><a href="#tab">Edit Bid</a></li>
+						</ul>
+
+						<div class="popup-tabs-container">
+
+							<!-- Tab -->
+							<div class="popup-tab-content" id="tab">
+
+								<!-- Bidding -->
+								<div class="bidding-widget">
+									<!-- Headline -->
+									<span class="bidding-detail">Set your <strong>minimal hourly rate</strong></span>
+
+									<!-- Price Slider -->
+									<div class="bidding-value">&#8377;<span id="biddingVal"></span></div>
+									<input class="bidding-slider" type="text" value="" data-slider-handle="custom"
+										data-slider-currency="&#8377;" data-slider-min="100" data-slider-max="600"
+										data-slider-value="400" data-slider-step="1" data-slider-tooltip="hide" />
+
+									<!-- Headline -->
+									<span class="bidding-detail margin-top-30">Set your <strong>delivery
+											time</strong></span>
+
+									<!-- Fields -->
+									<div class="bidding-fields">
+										<div class="bidding-field">
+											<!-- Quantity Buttons -->
+											<div class="qtyButtons with-border">
+												<div class="qtyDec"></div>
+												<input type="text" name="qtyInput" value="2">
+												<div class="qtyInc"></div>
+											</div>
+										</div>
+										<div class="bidding-field">
+											<select class="selectpicker default with-border">
+												<option selected>Days</option>
+												<option>Hours</option>
+											</select>
+										</div>
+									</div>
+								</div>
+
+								<!-- Button -->
+								<button class="button full-width button-sliding-icon ripple-effect" type="submit">Save
+									Changes
+									<i class="icon-material-outline-arrow-right-alt"></i></button>
+
+							</div>
+
+						</div>
+					</div>
+				</div>
+
+
+
+				<!-- Edit Bid Popup / End -->
+				<%- include("seller-footer") -%>

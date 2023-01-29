@@ -57,12 +57,12 @@
 
 											<!-- Details -->
 											<div class="job-listing-description">
-												<h3 class="job-listing-title"><a href="single-tasks-list/<%= task._id %>"><%= task.task_name %></a> <span class="dashboard-status-button yellow">Expiring</span></h3>
+												<h3 class="job-listing-title"><a href=""><%= task.task_name %> (<%= task.category%>)</a> </h3>
 												<!-- Job Listing Footer -->
 												<div class="job-listing-footer">
-													<ul>
-														<li><i class="icon-material-outline-access-time"></i> 23 hours left</li>
-													</ul>
+													<!-- <ul>
+														<li><i class="icon-material-outline-access-time"></i></li>
+													</ul> -->
 												</div>
 											</div>
 										</div>
@@ -70,16 +70,16 @@
 									
 									<!-- Task Details -->
 									<ul class="dashboard-task-info">
-										<li><strong>3</strong><span>Bids</span></li>
-										<li><strong>&#8377;220</strong><span>Avg. Bid</span></li>
-										<li><strong>&#8377;150 - &#8377;300</strong><span>Hourly Rate</span></li>
+										<li><strong>1</strong><span>Bids</span></li>
+										<li><strong>&#8377;500</strong><span>Avg. Bid</span></li>
+										<li><strong>&#8377;<%=task.min_budget%> - &#8377;<%=task.max_budget%></strong><span>Hourly Rate</span></li>
 									</ul>
 
 									<!-- Buttons -->
 									<div class="buttons-to-right always-visible">
-										<a href="seller-manage-bidders" class="button ripple-effect"><i class="icon-material-outline-supervisor-account"></i> Manage Bidders <span class="button-info">3</span></a>
+										<a href="seller-manage-bidders/<%= task._id %>" class="button ripple-effect"><i class="icon-material-outline-supervisor-account"></i> Manage Bidders</a>
 										<a href="#" class="button gray ripple-effect ico" title="Edit" data-tippy-placement="top"><i class="icon-feather-edit"></i></a>
-										<a href="#" class="button gray ripple-effect ico" title="Remove" data-tippy-placement="top"><i class="icon-feather-trash-2"></i></a>
+										<a href="delete_task/<%=task._id%>" class="button gray ripple-effect ico" title="Remove" data-tippy-placement="top"><i class="icon-feather-trash-2"></i></a>
 									</div>
 								</li>
 								<% }); %>

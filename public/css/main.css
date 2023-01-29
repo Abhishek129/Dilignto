@@ -18,3 +18,20 @@ input[type=number] {
 .cus-btn-color{
   background-color: green !important;
 }
+.custom-width{
+
+	width: auto !important;
+}
+
+.old-task-info{
+
+	background-color: #193857 !important; 
+	color: #fff !important;
+}
+
+.old-task-info strong{
+
+	background-color: #193857 !important; 
+	color: #fff !important;
+
+}

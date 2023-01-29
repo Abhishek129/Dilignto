@@ -50,9 +50,9 @@
 						<div class="content">
 							<ul class="dashboard-box-list">
 
-								<% task.forEach(function(task){ %>
 								<% active_bid_list.forEach(function(active_bid_list){ %>
-								<% if(task._id==active_bid_list.taskid){ %>
+									<% task.forEach(function(task){ %>
+									<% if(active_bid_list.status=='approved') { if(task._id==active_bid_list.taskid){ %>
 								<li>
 									<!-- Job Listing -->
 									<div class="job-listing width-adjustment">
@@ -66,23 +66,32 @@
 											</div>
 										</div>
 									</div>
-									
-									<!-- Task Details -->
 									<ul class="dashboard-task-info">
-										<li><strong>&#8377;<%=active_bid_list.bid_rate%></strong><span><Hourly Rate></span></li>
-										<li><strong><%=active_bid_list.delivery_time%></strong><span>Delivery Time</span></li>
+										<li>Current Status <strong> In making </strong> 	</li>
+										<li> Helper <strong> Hemaxi Prajapati</strong></li>
 									</ul>
+									
 
-									<!-- Buttons -->
-									<div class="buttons-to-right always-visible">
-										<a href="#small-dialog" class="popup-with-zoom-anim button dark ripple-effect ico" title="Edit Bid" data-tippy-placement="top"><i class="icon-feather-edit"></i></a>
-										<a href="#" class="button red ripple-effect ico" title="Cancel Bid" data-tippy-placement="top"><i class="icon-feather-trash-2"></i></a>
+									<div class=" " style="display: flex;">
+										
+
+										<div style="margin: 0px 10px 0px 0px;" ><a href="#small-dialog-1" class=" popup-with-zoom-anim button button-sliding-icon ripple-effect"> Approve pick up
+											<i class="icon-material-outline-arrow-right-alt"></i></a>
+										</div>
+
+										<div style="margin: 0px 10px;" ><a href="#small-dialog-2" class="popup-with-zoom-anim button button-sliding-icon ripple-effect"> Received 
+											<i class="icon-material-outline-arrow-right-alt"></i></a>
+										</div>
+
+										<div style="margin: 0px 10px;" ><a href="#small-dialog-3" class="popup-with-zoom-anim button button-sliding-icon ripple-effect"> Paid
+											<i class="icon-material-outline-arrow-right-alt"></i></a>
+										</div>
+										<div style="margin: 0px 10px;" ><span style ="padding-left: 20px; "> Bill status: <strong  style="color: red;"> Unpaid</strong></span></div>	
+										
+										
 									</div>
 								</li>
-								
-								<%} %>
-									
-								
+								<%}} %>
 								<% }); %>
 								<% }); %>
 							</ul>
@@ -94,54 +103,94 @@
 			<!-- Row / End -->
 			<!-- Edit Bid Popup
 ================================================== -->
-<div id="small-dialog" class="zoom-anim-dialog mfp-hide dialog-with-tabs">
+<div id="small-dialog-1" class="zoom-anim-dialog mfp-hide dialog-with-tabs">
 
 	<!--Tabs -->
 	<div class="sign-in-form">
 
 		<ul class="popup-tabs-nav">
-			<li><a href="#tab">Edit Bid</a></li>
+			<li><a href="#tab1">Approve pick up </a></li>
 		</ul>
 
 		<div class="popup-tabs-container">
 
 			<!-- Tab -->
 			<div class="popup-tab-content" id="tab">
-						
-					<!-- Bidding -->
-					<div class="bidding-widget">
-						<!-- Headline -->
-						<span class="bidding-detail">Set your <strong>minimal hourly rate</strong></span>
-
-						<!-- Price Slider -->
-						<div class="bidding-value">&#8377;<span id="biddingVal"></span></div>
-						<input class="bidding-slider" type="text" value="" data-slider-handle="custom" data-slider-currency="&#8377;" data-slider-min="100" data-slider-max="600" data-slider-value="400" data-slider-step="1" data-slider-tooltip="hide" />
-						
-						<!-- Headline -->
-						<span class="bidding-detail margin-top-30">Set your <strong>delivery time</strong></span>
-
-						<!-- Fields -->
-						<div class="bidding-fields">
-							<div class="bidding-field">
-								<!-- Quantity Buttons -->
-								<div class="qtyButtons with-border">
-									<div class="qtyDec"></div>
-									<input type="text" name="qtyInput" value="2">
-									<div class="qtyInc"></div>
-								</div>
-							</div>
-							<div class="bidding-field">
-								<select class="selectpicker default with-border">
-									<option selected>Days</option>
-									<option>Hours</option>
-								</select>
-							</div>
-						</div>
-				</div>
 				
-				<!-- Button -->
-				<button class="button full-width button-sliding-icon ripple-effect" type="submit">Save Changes <i class="icon-material-outline-arrow-right-alt"></i></button>
+				<!-- Welcome Text -->
+				<div class="welcome-text">
+					<h3>Approve order pick up </h3>
 
+				</div>
+
+				<!-- Button -->
+				<div class=" " style="display: flex; ">
+				<button class="margin-top-15 button full-width button-sliding-icon ripple-effect" style = "margin-right: 20px; background-color: green;" type="submit" form="terms"> Confirm <i class="icon-material-outline-arrow-right-alt"></i></button>
+				<button class="margin-top-15 button full-width button-sliding-icon ripple-effect"  style=" background-color: red;"type="submit" form="terms">Cancel  <i class="icon-material-outline-arrow-right-alt"></i></button>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>
+
+<div id="small-dialog-2" class="zoom-anim-dialog mfp-hide dialog-with-tabs">
+
+	<!--Tabs -->
+	<div class="sign-in-form">
+
+		<ul class="popup-tabs-nav">
+			<li><a href="#tab1">Approve Delivery </a></li>
+		</ul>
+
+		<div class="popup-tabs-container">
+
+			<!-- Tab -->
+			<div class="popup-tab-content" id="tab">
+				
+				<!-- Welcome Text -->
+				<div class="welcome-text">
+					<h3>Approve order is Received </h3>
+
+				</div>
+
+				<!-- Button -->
+				<div class=" " style="display: flex; ">
+				<button class="margin-top-15 button full-width button-sliding-icon ripple-effect" style = "margin-right: 20px; background-color: green;" type="submit" form="terms"> Received <i class="icon-material-outline-arrow-right-alt"></i></button>
+				<button class="margin-top-15 button full-width button-sliding-icon ripple-effect"  style=" background-color: red;"type="submit" form="terms">Cancel  <i class="icon-material-outline-arrow-right-alt"></i></button>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>
+
+
+<div id="small-dialog-3" class="zoom-anim-dialog mfp-hide dialog-with-tabs">
+
+	<!--Tabs -->
+	<div class="sign-in-form">
+
+		<ul class="popup-tabs-nav">
+			<li><a href="#tab1">Approve Payment </a></li>
+		</ul>
+
+		<div class="popup-tabs-container">
+
+			<!-- Tab -->
+			<div class="popup-tab-content" id="tab">
+				
+				<!-- Welcome Text -->
+				<div class="welcome-text">
+					<h3> Click Paid if Payment Done </h3>
+
+				</div>
+
+				<!-- Button -->
+				<div class=" " style="display: flex; ">
+				<button class="margin-top-15 button full-width button-sliding-icon ripple-effect" style = "margin-right: 20px; background-color: green;" type="submit" form="terms"> Paid <i class="icon-material-outline-arrow-right-alt"></i></button>
+				<button class="margin-top-15 button full-width button-sliding-icon ripple-effect"  style=" background-color: red;"type="submit" form="terms"> Not Paid  <i class="icon-material-outline-arrow-right-alt"></i></button>
+				</div>
 			</div>
 
 		</div>

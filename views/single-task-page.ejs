@@ -100,12 +100,12 @@ Now attach the safety pin to the elastic and thread it through the tube. Make su
 			<div class="col-xl-4 col-lg-4">
 				<div class="sidebar-container">
 
-					<div class="countdown green margin-bottom-35">6 days, 23 hours left</div>
+					<!-- <div class="countdown green margin-bottom-35">6 days, 23 hours left</div> -->
 
 					<div class="sidebar-widget">
 						<div class="bidding-widget">
 							<form action="/bid-task/" method="post", id="bid-task">
-								<input type="hidden" name="userid" value="<%= user._id%>">
+								<input type="hidden" name="helperid" value="<%= user._id%>">
 								<input type="hidden" name="taskid" value="<%= task._id%>">
 								<div class="bidding-headline">
 									<h3>Bid on this job!</h3>

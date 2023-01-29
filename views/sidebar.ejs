@@ -17,11 +17,17 @@
             <ul data-submenu-title="Start">
                 <li class="active"><a href="/dashboard"><i class="icon-material-outline-dashboard"></i> Dashboard</a></li>
             </ul>
-
+            <!-- hchnge -->
             <ul data-submenu-title="Organize and Manage">
-                <li><a href="/tasks-list"><i class="icon-material-outline-assignment"></i>Browse Tasks</a>
-                </li>
+                <li><a href="/tasks-list"><i class="icon-material-outline-assignment"></i>Browse Tasks</a></li>
+                <li><a><i class="icon-material-outline-assignment"></i> Order </a></li>
+                <div class="" style="margin-left:2em">
+                    <li <% if(active=='managetask'){ %> class="active" <% } %>><a href="/helper-my-bids"> My Bids <span class="nav-tag">2</span></a>
+                    <li <% if(active=='activebid'){ %> class="active" <% } %>><a href="/helper-active-bids"> Active Task <spanclass="nav-tag">4</span></a></li>
+                    <li <% if(active=='posttask'){ %> class="active" <% } %>><a href="/helper-old-task">Old Task</a></li>
+                </div>
             </ul>
+<!-- hchnge -->
 
         </div>
     </div>
